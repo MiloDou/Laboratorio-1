@@ -10,42 +10,52 @@ public class program
         ShowMenu();
         int option;
         option = Convert.ToInt32(Console.ReadLine());
-        switch (option) {
+        switch (option)
+        {
             case 1:
                 {
 
-                }break;
-                case 2: {
-                
-                }break;
-                case 3: { 
+                }
+                break;
+            case 2:
+                {
 
-                }break;
+                }
+                break;
+            case 3:
+                {
 
-                case 4: {
-                
-                }break;
+                }
+                break;
 
-                case 5:
+            case 4:
+                {
+
+                }
+                break;
+
+            case 5:
                 {
                     Exit();
-                }break;
+                }
+                break;
 
-        
-        
+
+
         }
 
 
 
     }
 
-    static void ShowMenu()    
+    static void ShowMenu()
     {
-        while (true) {
+        while (true)
+        {
             try
             {
                 Console.WriteLine("--------------------------");
-                Console.ForegroundColor= ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("     PRINCIPAL MENU");
                 Console.ResetColor();
                 Console.WriteLine("--------------------------\n");
@@ -57,13 +67,13 @@ public class program
                 Console.WriteLine("6. Salir del Programa");
                 Console.WriteLine("Choose option: ");
             }
-            catch(Exception MessageError) 
+            catch (Exception MessageError)
             {
-                Console.WriteLine("Error found: "+MessageError);
+                Console.WriteLine("Error found: " + MessageError);
 
             }
-            
-        
+
+
         }
 
 
@@ -77,16 +87,50 @@ public class program
     }
     public int Tienda(string producto, int precio, int codigo)
     {
+        while (true)
+        {
+            try
+            {
+                MenuTienda();
+                int optionTienda;
+                optionTienda = Convert.ToInt32(Console.ReadLine());
+                switch (optionTienda)
+                { 
+
+                }
+
+            }
+
+
+            catch (FormatException ErrorMessage1)
+
+            {
+                Console.WriteLine("Error found: "+ErrorMessage1);
+                
+            }
+            Console.ReadKey();
+
+
+            return codigo + precio;
+
+        }
+    }
+    static void MenuTienda()
+    {
+        Console.Clear();
         Console.WriteLine("---------------------------------------");
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("         DEPOSITO XELAJU");
         Console.ResetColor();
         Console.WriteLine("---------------------------------------\n");
-        
-
-
-
-        return codigo + precio;
-
+        Console.WriteLine("Escriba su nombre: ");
+        string NombreUsuario = Console.ReadLine();
+        Console.WriteLine("Escriba su apellido: ");
+        string ApellidoUsuario = Console.ReadLine();
+        Console.WriteLine("Bienvenido al Deposito Xelajú: " + NombreUsuario + " " + ApellidoUsuario);
+        Console.WriteLine("1. Ingresar productos ");
+        Console.WriteLine("2. Comprar");
+        Console.WriteLine("3. Salir del programa");
+        Console.Write("Elige una opción: ");
     }
 }
