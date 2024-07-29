@@ -8,6 +8,10 @@ namespace Laboratorio_1
 {
     public class Products
     {
+        static void main(string[] args)
+        {
+
+        }
 
 
 
