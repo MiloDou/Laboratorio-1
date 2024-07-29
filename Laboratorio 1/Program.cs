@@ -2,12 +2,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
-public class program
+ class program
 {
     public string producto;
     public double precio;
     public int codigo;
-    static void main(string[] args)
+    public void main(string[] args)
     {
         ShowMenu();
         int option;
@@ -87,7 +87,7 @@ public class program
         Console.WriteLine("ENTER para salir");
         Console.ResetColor();
     }
-    static void Tienda(string producto, int precio, int codigo, int cantidad)
+     public void Tienda(string producto, int precio, int codigo, int cantidad)
     {
         while (true)
         {
@@ -104,7 +104,7 @@ public class program
                         } break;
                     case 2:
                         {
-                            SumarProductosTienda(producto ,precio, codigo, cantidad)
+                            SumarProductosTienda(producto, precio, codigo, cantidad);
                         } break;
                     case 3:
                         {
@@ -186,13 +186,19 @@ public class program
         }
         return precio;
     }
-    public int SumarProductosTienda(string producto, int precio, int código, int cantidad)
+    public double SumarProductosTienda(string producto, int precio, int código, int cantidad)
     {
-        int Total = 0;
-        Total = precio * cantidad;
-        Console.WriteLine("Su total es: "+ Total);
+        double Total1 = 0;
+        Total1 = precio * cantidad;
+        double Total2 = 0;
+        double Descuento = 1/2;
+        Total2 = Total1 * Descuento;
+
+        Console.WriteLine("El producto es, "+ producto+ " .Su total es: "+ Total1);
+        Console.WriteLine("Descuento es del 5% ");
+        Console.WriteLine("El Total es: " + Total2);
 
 
-        return Total;
+        return Total2;
     }
 }
