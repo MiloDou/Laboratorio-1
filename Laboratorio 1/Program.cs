@@ -1,56 +1,53 @@
-﻿using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
+﻿using System;
 
- class program
+public class Program
 {
-    public string producto;
-    public double precio;
-    public int codigo;
-    public void main(string[] args)
+    static void Main(string[] args)
     {
-        ShowMenu();
-        int option;
-        option = Convert.ToInt32(Console.ReadLine());
-        switch (option)
-        {
-            case 1:
-                {
 
-                }
-                break;
-            case 2:
-                {
+        
+            int option;
+            option = ShowMenu();
+            switch (option)
+            {
+                case 1:
+                    {
+                        Tienda();
+                    }
+                    break;
+                case 2:
+                    {
 
-                }
-                break;
-            case 3:
-                {
+                    }
+                    break;
+                case 3:
+                    {
 
-                }
-                break;
+                    }
+                    break;
 
-            case 4:
-                {
+                case 4:
+                    {
 
-                }
-                break;
+                    }
+                    break;
 
-            case 5:
-                {
-                    Exit();
-                }
-                break;
+                case 5:
+                    {
+                        Exit();
+                    }
+                    break;
 
 
 
-        }
+            } 
+        
 
 
 
     }
 
-    static void ShowMenu()
+    static int ShowMenu()
     {
         while (true)
         {
@@ -68,6 +65,8 @@ using System.Numerics;
                 Console.WriteLine("5. Mostar Resumen");
                 Console.WriteLine("6. Salir del Programa");
                 Console.WriteLine("Choose option: ");
+                return int.Parse(Console.ReadLine());
+                
             }
             catch (Exception MessageError)
             {
@@ -87,29 +86,42 @@ using System.Numerics;
         Console.WriteLine("ENTER para salir");
         Console.ResetColor();
     }
-     public void Tienda(string producto, int precio, int codigo, int cantidad)
+
+    public static void Tienda()
     {
-        while (true)
+        string[] productos = new string[100];
+        int[] precios = new int[100];
+        int[] codigos = new int[100];
+        int[] cantidades = new int[100];
+        int indice = 0;
+        Console.Write("Escriba su nombre: ");
+        string NombreUsuario = Console.ReadLine();
+        Console.WriteLine("Escriba su apellido: ");
+        do
         {
             try
             {
-                MenuTienda();
-                int optionTienda;
-                optionTienda = Convert.ToInt32(Console.ReadLine());
+                
+                string ApellidoUsuario = Console.ReadLine();
+                
+                int optionTienda = MenuTienda(NombreUsuario, ApellidoUsuario);
                 switch (optionTienda)
                 {
                     case 1:
                         {
-                            AgregarProductoTienda(producto, precio, codigo, cantidad);
-                        } break;
+                            AgregarProductoTienda(productos, precios, codigos, cantidades, ref indice);
+                        }
+                        break;
                     case 2:
                         {
-                            SumarProductosTienda(producto, precio, codigo, cantidad);
-                        } break;
+                            SumarProductosTienda(productos, precios, codigos, cantidades, indice);
+                        }
+                        break;
                     case 3:
                         {
                             SalidaTienda();
-                        } break;
+                            return;
+                        }
 
                 }
 
@@ -124,12 +136,14 @@ using System.Numerics;
             }
             Console.ReadKey();
 
+        } while (true);
 
 
 
-        }
+        
     }
-    static void MenuTienda()
+
+    static int MenuTienda(string NombreUsuario, string ApellidoUsuario)
     {
         Console.Clear();
         Console.WriteLine("---------------------------------------");
@@ -137,16 +151,14 @@ using System.Numerics;
         Console.WriteLine("         DEPOSITO XELAJU");
         Console.ResetColor();
         Console.WriteLine("---------------------------------------\n");
-        Console.WriteLine("Escriba su nombre: ");
-        string NombreUsuario = Console.ReadLine();
-        Console.WriteLine("Escriba su apellido: ");
-        string ApellidoUsuario = Console.ReadLine();
         Console.WriteLine("Bienvenido al Deposito Xelajú: " + NombreUsuario + " " + ApellidoUsuario);
         Console.WriteLine("1. Ingresar productos ");
         Console.WriteLine("2. Comprar");
         Console.WriteLine("3. Salir del programa");
         Console.Write("Elige una opción: ");
+        return int.Parse(Console.ReadLine());
     }
+
     static void SalidaTienda()
     {
         Console.WriteLine("---------------------------------------");
@@ -156,49 +168,55 @@ using System.Numerics;
         Console.WriteLine("---------------------------------------");
 
     }
-    public int AgregarProductoTienda(string producto, int precio, int código, int cantidad)
+
+    public static void AgregarProductoTienda(string[] productos, int[] precios, int[] codigos, int[] cantidades, ref int indice)
     {
-        try
-        {
+            try
+            {
 
-            Console.Clear();
-            Console.WriteLine("---------------------------------------");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("         MENU PRODUCTOS");
-            Console.ResetColor();
-            Console.WriteLine("---------------------------------------\n");
-            Console.Write("Ingrese nombre del producto: ");
-            producto = Console.ReadLine();
-            Console.WriteLine("Ingrese precio del producto");
-            precio = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Ingrese la cantidad de este producto: ");
-            cantidad = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Los productos ingresados son: ");
-            Console.WriteLine(producto + "Q. "+precio);
-            Console.WriteLine("Total de productos: "+ cantidad*precio);
+                Console.Clear();
+                Console.WriteLine("---------------------------------------");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("         MENU PRODUCTOS");
+                Console.ResetColor();
+                Console.WriteLine("---------------------------------------\n");
+                Console.Write("Ingrese nombre del producto: ");
+                productos[indice] = Console.ReadLine();
+                Console.Write("Ingrese precio del producto: ");
+                precios[indice] = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Ingrese la cantidad de este producto: ");
+                cantidades[indice] = Convert.ToInt32(Console.ReadLine());
+                codigos[indice] = indice + 1;
 
-        }
-        catch (FormatException ErrorMessage2)
-        {
+                Console.WriteLine($"Producto agregado: {productos[indice]}, Precio: Q.{precios[indice]}, Cantidad: {cantidades[indice]}, Código: {codigos[indice]}");
 
-            Console.WriteLine("Error Found: "+ ErrorMessage2);
+                indice++;
 
-        }
-        return precio;
+            }
+            catch (FormatException ErrorMessage2)
+            {
+
+                Console.WriteLine("Error Found: " + ErrorMessage2);
+
+            }
+        
     }
-    public double SumarProductosTienda(string producto, int precio, int código, int cantidad)
+
+    public static void SumarProductosTienda(string[] productos, int[] precios, int[] codigos, int[] cantidades, int indice)
     {
         double Total1 = 0;
-        Total1 = precio * cantidad;
+        double Descuento = 0.05; 
         double Total2 = 0;
-        double Descuento = 1/2;
-        Total2 = Total1 * Descuento;
 
-        Console.WriteLine("El producto es, "+ producto+ " .Su total es: "+ Total1);
-        Console.WriteLine("Descuento es del 5% ");
-        Console.WriteLine("El Total es: " + Total2);
+        for (int i = 0; i < indice; i++)
+        {
+            Total1 += precios[i] * cantidades[i];
+        }
 
+        Total2 = Total1 * (1 - Descuento);
 
-        return Total2;
+        Console.WriteLine($"Total de productos: Q.{Total1}");
+        Console.WriteLine($"Descuento aplicado: 5%");
+        Console.WriteLine($"Total con descuento: Q.{Total2}");
     }
 }
