@@ -3,7 +3,7 @@
 public class program
 {
     public string producto;
-    public int precio;
+    public double precio;
     public int codigo;
     static void main(string[] args)
     {
@@ -95,7 +95,19 @@ public class program
                 int optionTienda;
                 optionTienda = Convert.ToInt32(Console.ReadLine());
                 switch (optionTienda)
-                { 
+                {
+                    case 1:
+                        {
+                            AgregarProducto(producto, precio, codigo);
+                        } break;
+                    case 2:
+                        {
+
+                        } break;
+                    case 3:
+                        {
+                            SalidaTienda();
+                        } break;
 
                 }
 
@@ -105,8 +117,8 @@ public class program
             catch (FormatException ErrorMessage1)
 
             {
-                Console.WriteLine("Error found: "+ErrorMessage1);
-                
+                Console.WriteLine("Error found: " + ErrorMessage1);
+
             }
             Console.ReadKey();
 
@@ -132,5 +144,39 @@ public class program
         Console.WriteLine("2. Comprar");
         Console.WriteLine("3. Salir del programa");
         Console.Write("Elige una opción: ");
+    }
+    static void SalidaTienda()
+    {
+        Console.WriteLine("---------------------------------------");
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine("Gracias por utilizar nuestro programa");
+        Console.ResetColor();
+        Console.WriteLine("---------------------------------------");
+
+    }
+    public int AgregarProducto(string producto, int precio, int código)
+    {
+        try
+        {
+
+            Console.Clear();
+            Console.WriteLine("---------------------------------------");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("         MENU PRODUCTOS");
+            Console.ResetColor();
+            Console.WriteLine("---------------------------------------\n");
+            Console.Write("Ingrese nombre del producto: ");
+            producto = Console.ReadLine();
+            Console.WriteLine("Ingrese precio del producto");
+            precio = Convert.ToInt32(Console.ReadLine());
+
+        }
+        catch (FormatException ErrorMessage2)
+        {
+
+            Console.WriteLine("Error Found: "+ ErrorMessage2);
+
+        }
+        return precio;
     }
 }
