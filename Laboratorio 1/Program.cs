@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 
 public class program
 {
@@ -85,7 +87,7 @@ public class program
         Console.WriteLine("ENTER para salir");
         Console.ResetColor();
     }
-    public int Tienda(string producto, int precio, int codigo)
+    static void Tienda(string producto, int precio, int codigo, int cantidad)
     {
         while (true)
         {
@@ -98,11 +100,11 @@ public class program
                 {
                     case 1:
                         {
-                            AgregarProducto(producto, precio, codigo);
+                            AgregarProductoTienda(producto, precio, codigo, cantidad);
                         } break;
                     case 2:
                         {
-
+                            SumarProductosTienda(producto ,precio, codigo, cantidad)
                         } break;
                     case 3:
                         {
@@ -123,7 +125,7 @@ public class program
             Console.ReadKey();
 
 
-            return codigo + precio;
+
 
         }
     }
@@ -154,7 +156,7 @@ public class program
         Console.WriteLine("---------------------------------------");
 
     }
-    public int AgregarProducto(string producto, int precio, int código)
+    public int AgregarProductoTienda(string producto, int precio, int código, int cantidad)
     {
         try
         {
@@ -169,6 +171,11 @@ public class program
             producto = Console.ReadLine();
             Console.WriteLine("Ingrese precio del producto");
             precio = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Ingrese la cantidad de este producto: ");
+            cantidad = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Los productos ingresados son: ");
+            Console.WriteLine(producto + "Q. "+precio);
+            Console.WriteLine("Total de productos: "+ cantidad*precio);
 
         }
         catch (FormatException ErrorMessage2)
@@ -178,5 +185,14 @@ public class program
 
         }
         return precio;
+    }
+    public int SumarProductosTienda(string producto, int precio, int código, int cantidad)
+    {
+        int Total = 0;
+        Total = precio * cantidad;
+        Console.WriteLine("Su total es: "+ Total);
+
+
+        return Total;
     }
 }
